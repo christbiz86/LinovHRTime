@@ -2,9 +2,9 @@ target/
 src/main/resources/
 .dbeaver/
 .project
-*.xml
+
 .classpath
-.gitignore
+
 .settings/
 .project
 database.sql
