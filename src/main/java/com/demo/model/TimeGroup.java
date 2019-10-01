@@ -13,7 +13,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name="t_time_groups",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","code"}))
+@Table(name="time_time_groups",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","code"}))
 public class TimeGroup extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
@@ -53,7 +53,11 @@ public class TimeGroup extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if (company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;	
+		}
 	}
 
 	public String getCode() {
@@ -61,7 +65,11 @@ public class TimeGroup extends BaseEntity {
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if (code == null) {
+			this.code = new String();
+		} else {
+			this.code = code;	
+		}
 	}
 
 	public String getName() {
@@ -69,7 +77,11 @@ public class TimeGroup extends BaseEntity {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name == null) {
+			this.name = new String();
+		} else {
+			this.name = name;
+		}
 	}
 
 	public String getDescription() {
@@ -77,7 +89,11 @@ public class TimeGroup extends BaseEntity {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if (description == null) {
+			this.description = new String();
+		} else {
+			this.description = description;	
+		}
 	}
 
 	public Boolean getIsIgnoreHoliday() {
