@@ -57,7 +57,7 @@ public class EventService {
 	}
 	
 	private void valBkNotExist(Event event)throws Exception{
-		if(eventDao.isBkExist(event.getName(), event.getCompany().getId(), event.getEventStart() == null)) {
+		if(eventDao.isBkExist(event.getName(), event.getCompany().getId(), event.getEventStart())) {
 			throw new Exception("Data already exist");
 		}
 	}
@@ -65,7 +65,7 @@ public class EventService {
 	private void valBkNotChange(Event event)throws Exception{
 		String company = findById(event.getId()).getCompany().getId();
 		String name = findById(event.getId()).getName();
-		String eventStart = findById(event.getId()).getEventStart();
+		Timestamp eventStart = findById(event.getId()).getEventStart();
 		if(!event.getCompany().getId().equals(company)) {
 			throw new Exception("Company is cannot be changed");
 		}

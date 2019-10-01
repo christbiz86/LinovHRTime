@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -30,15 +28,12 @@ public class ScheduleException extends BaseEntity {
     @OneToOne
 	private Employee employee;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="date")
 	private Date date;
 	
-	@Temporal(TemporalType.TIME)
 	@Column(name="time_in")
 	private Timestamp timeIn;
 	
-	@Temporal(TemporalType.TIME)
 	@Column(name="time_out")
 	private Timestamp timeOut;
 	
