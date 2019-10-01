@@ -1,5 +1,7 @@
 package com.demo;
 
+import java.util.TimeZone;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,13 +12,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "com.demo.dao", "com.demo.service", "com.demo.controller"})
+@ComponentScan(basePackages = { "com.demo.dao", "com.demo.service", "com.demo.controller", "com.demo.combo"})
 @EnableTransactionManagement
 @EntityScan(basePackages = "com.demo.model")
 public class MainSpringBoot extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
-//		TimeZone.setDefault(TimeZone.getTimeZone("ASIA/JAKARTA"));
+		TimeZone.setDefault(TimeZone.getTimeZone("ASIA/JAKARTA"));
 		SpringApplication.run(MainSpringBoot.class, args);
 	}
 }

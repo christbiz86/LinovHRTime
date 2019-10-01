@@ -8,9 +8,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>com.linovhr.time</artifactId>
-    <name>LinovHR - Tools Module</name>
+    <name>LinovHR - Time Module</name>
     <packaging>war</packaging>
-    <description>LinovHR - Tools Module. Depends on Core Module.</description>
+    <description>LinovHR - Time Module. Depends on Core Module.</description>
 
     <dependencies>
         <!-- Core modules -->
