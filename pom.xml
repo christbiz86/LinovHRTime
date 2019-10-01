@@ -7,7 +7,7 @@
         <artifactId>com.linovhr</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>com.linovhr.tools</artifactId>
+    <artifactId>com.linovhr.time</artifactId>
     <name>LinovHR - Tools Module</name>
     <packaging>war</packaging>
     <description>LinovHR - Tools Module. Depends on Core Module.</description>

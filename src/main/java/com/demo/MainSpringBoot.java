@@ -1,6 +1,4 @@
-package com.demo.time;
-
-import java.util.TimeZone;
+package com.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
