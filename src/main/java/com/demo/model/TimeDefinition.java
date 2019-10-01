@@ -40,14 +40,16 @@ public class TimeDefinition extends BaseEntity {
 	@Column(name = "measurement")
 	private String measurement;
 	
-	@Column(name = "lov_tdevty")
-	private String lovTdevty;
+	@JoinColumn(name = "lov_tdevty", referencedColumnName = "id")
+	@OneToOne
+	private Lov lovTdevty;
 	
 	@Column(name = "attendance_codes")
 	private String attendanceCode;
 	
-	@Column(name = "lov_tddaty")
-	private String lovTddaty;
+	@JoinColumn(name = "lov_tddaty", referencedColumnName = "id")
+	@OneToOne
+	private Lov lovTddaty;
 	
 	@Column(name = "minimum")
 	private Time minimum;
@@ -135,13 +137,13 @@ public class TimeDefinition extends BaseEntity {
 		}
 	}
 
-	public String getLovTdevty() {
+	public Lov getLovTdevty() {
 		return lovTdevty;
 	}
 
-	public void setLovTdevty(String lovTdevty) {
+	public void setLovTdevty(Lov lovTdevty) {
 		if(lovTdevty == null) {
-			this.lovTdevty = new String();
+			this.lovTdevty = new Lov();
 		} else {
 			this.lovTdevty = lovTdevty;
 		}
@@ -159,13 +161,13 @@ public class TimeDefinition extends BaseEntity {
 		}
 	}
 
-	public String getLovTddaty() {
+	public Lov getLovTddaty() {
 		return lovTddaty;
 	}
 
-	public void setLovTddaty(String lovTddaty) {
+	public void setLovTddaty(Lov lovTddaty) {
 		if(lovTddaty == null) {
-			this.lovTddaty = new String();
+			this.lovTddaty = new Lov();
 		} else {
 			this.lovTddaty = lovTddaty;
 		}

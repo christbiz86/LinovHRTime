@@ -18,80 +18,69 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.Attendance;
-import com.demo.service.AttendanceService;
+import com.demo.model.EmployeeQuota;
+import com.demo.service.EmployeeQuotaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @Transactional
 @RequestMapping({ "/api/v1/time" })
-public class AttendanceController {
+public class EmployeeQuotaController {
 	
 	@Autowired
-	private AttendanceService attendanceService;
+	private EmployeeQuotaService eqService;
 	
-	@GetMapping(value = "/attendances")
+	@GetMapping(value = "/employee-quotas")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {
-			List<Attendance> list = attendanceService.findAll();
-			return new ResponseEntity<List<Attendance>>(list, HttpStatus.OK);
+			List<EmployeeQuota> list = eqService.findAll();
+			return new ResponseEntity<List<EmployeeQuota>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 	}
 	
-	@GetMapping(value = "/attendance/{id}")
+	@GetMapping(value = "/employee-quota/{id}")
 	@Transactional
 	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
 		try {
-			Attendance attendance = attendanceService.findById(id);
-			return new ResponseEntity<Attendance>(attendance, HttpStatus.OK);
+			EmployeeQuota eq = eqService.findById(id);
+			return new ResponseEntity<EmployeeQuota>(eq, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 	}
 	
-	@GetMapping(value = "/attendance/code/{code}")
+	@PostMapping(value = "/employee-quota")
 	@Transactional
-	public ResponseEntity<?> findByCode(@PathVariable String code) throws Exception {
+	public ResponseEntity<?> insert(@RequestBody EmployeeQuota eq) throws Exception {
 		try {
-			Attendance attendance = attendanceService.findByCode(code);
-			return new ResponseEntity<Attendance>(attendance, HttpStatus.OK);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-		}
-	}
-	
-	@PostMapping(value = "/attendance")
-	@Transactional
-	public ResponseEntity<?> insert(@RequestBody Attendance attendance) throws Exception {
-		try {
-			attendanceService.insert(attendance);
-			return ResponseEntity.ok("Insert success with Attendance name: "+attendance.getName());
+			eqService.insert(eq);
+			return ResponseEntity.ok("Insert success!");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/attendance")
+	@PutMapping(value = "/employee-quota")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody Attendance attendance) throws Exception {
+	public ResponseEntity<?> update(@RequestBody EmployeeQuota eq) throws Exception {
 		try {
-			attendanceService.update(attendance);
-			return ResponseEntity.ok("Update success with Attendance ID: "+attendance.getId());
+			eqService.update(eq);
+			return ResponseEntity.ok("Update success with Employee Quota ID: "+eq.getId());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/attendance/{id}")
+	@DeleteMapping(value = "/employee-quota/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			attendanceService.delete(id);
-			return ResponseEntity.ok("Delete success with Attendance ID: "+id);
+			eqService.delete(id);
+			return ResponseEntity.ok("Delete success with Employee Quota ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}

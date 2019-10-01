@@ -18,80 +18,69 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.Attendance;
-import com.demo.service.AttendanceService;
+import com.demo.model.RequestRawTimesheet;
+import com.demo.service.RequestRawTimesheetService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @Transactional
 @RequestMapping({ "/api/v1/time" })
-public class AttendanceController {
+public class RequestRawTimesheetController {
 	
 	@Autowired
-	private AttendanceService attendanceService;
+	private RequestRawTimesheetService rrtService;
 	
-	@GetMapping(value = "/attendances")
+	@GetMapping(value = "/request-raw-timesheets")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {
-			List<Attendance> list = attendanceService.findAll();
-			return new ResponseEntity<List<Attendance>>(list, HttpStatus.OK);
+			List<RequestRawTimesheet> list = rrtService.findAll();
+			return new ResponseEntity<List<RequestRawTimesheet>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 	}
 	
-	@GetMapping(value = "/attendance/{id}")
+	@GetMapping(value = "/request-raw-timesheets/{id}")
 	@Transactional
 	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
 		try {
-			Attendance attendance = attendanceService.findById(id);
-			return new ResponseEntity<Attendance>(attendance, HttpStatus.OK);
+			RequestRawTimesheet rrt = rrtService.findById(id);
+			return new ResponseEntity<RequestRawTimesheet>(rrt, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 	}
 	
-	@GetMapping(value = "/attendance/code/{code}")
+	@PostMapping(value = "/request-raw-timesheets")
 	@Transactional
-	public ResponseEntity<?> findByCode(@PathVariable String code) throws Exception {
+	public ResponseEntity<?> insert(@RequestBody RequestRawTimesheet rrt) throws Exception {
 		try {
-			Attendance attendance = attendanceService.findByCode(code);
-			return new ResponseEntity<Attendance>(attendance, HttpStatus.OK);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-		}
-	}
-	
-	@PostMapping(value = "/attendance")
-	@Transactional
-	public ResponseEntity<?> insert(@RequestBody Attendance attendance) throws Exception {
-		try {
-			attendanceService.insert(attendance);
-			return ResponseEntity.ok("Insert success with Attendance name: "+attendance.getName());
+			rrtService.insert(rrt);
+			return ResponseEntity.ok("Insert success!");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/attendance")
+	@PutMapping(value = "/request-raw-timesheets")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody Attendance attendance) throws Exception {
+	public ResponseEntity<?> update(@RequestBody RequestRawTimesheet rrt) throws Exception {
 		try {
-			attendanceService.update(attendance);
-			return ResponseEntity.ok("Update success with Attendance ID: "+attendance.getId());
+			rrtService.update(rrt);
+			return ResponseEntity.ok("Update success with Permit Request ID: "+rrt.getId());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/attendance/{id}")
+	@DeleteMapping(value = "/request-raw-timesheets/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			attendanceService.delete(id);
-			return ResponseEntity.ok("Delete success with Attendance ID: "+id);
+			rrtService.delete(id);
+			return ResponseEntity.ok("Delete success with Permit Request ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}

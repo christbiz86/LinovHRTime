@@ -13,7 +13,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name="t_time_groups",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","code"}))
+@Table(name="time_time_groups",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","code"}))
 public class TimeGroup extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	

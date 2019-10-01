@@ -70,7 +70,7 @@ public class TimeDefinitionService {
 			throw new Exception("Measurement can't empty!");
 		}
 		if(td.getLovTdevty() == null) {
-			throw new Exception("LOV tdevty can't empty!");
+			throw new Exception("LOV Time Definition Value Type can't empty!");
 		}
 		if(td.getIsFlexy() == null) {
 			throw new Exception("is_flexy can't empty!");

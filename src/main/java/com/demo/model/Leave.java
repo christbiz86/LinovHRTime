@@ -13,80 +13,73 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name="time_leaves",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","code"}))
+@Table(name = "time_leaves", uniqueConstraints = @UniqueConstraint(columnNames = { "company_id", "code" }))
 public class Leave extends BaseEntity {
 	private static final long serialVersionUID = 1L;
-	
-	@Column(name = "type")
-	private String type;
-	
+
 	@Column(name = "code")
 	private String code;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "max_quota")
 	private Integer maxQuota;
-	
+
 	@Column(name = "quota_expiration")
 	private Integer quotaExpiration;
-	
+
 	@Column(name = "day_taken_min")
 	private Integer dayTakenMin;
-	
+
 	@Column(name = "day_taken_max")
 	private Integer dayTakenMax;
-	
-	@Column(name = "catty_max")
+
+	@Column(name = "carry_max")
 	private Integer carryMax;
-	
+
 	@Column(name = "carry_expiration_day")
 	private Integer carryExpirationDay;
-	
+
 	@JoinColumn(name = "lov_lcty", referencedColumnName = "id")
 	@OneToOne
 	private Lov leaveType;
-	
+
 	@JoinColumn(name = "lov_lcpt", referencedColumnName = "id")
 	@OneToOne
 	private Lov leavePart;
-	
+
+	@JoinColumn(name = "lov_leave", referencedColumnName = "id")
+	@OneToOne
+	private Lov lovLeave;
+
 	@Column(name = "is_annual_leave")
 	private Integer isAnnualLeave;
-	
+
 	@Column(name = "is_allow_half_day")
 	private Integer isAllowHalfDay;
-	
+
 	@Column(name = "is_annual_leave_deductor")
 	private Integer isAnnualLeaveDeductor;
-	
+
 	@Column(name = "is_requestable")
 	private Integer isRequestAble;
-	
+
 	@Column(name = "is_quota_based")
 	private Integer isQuotaBased;
-	
+
 	@Column(name = "quota_type")
 	private String quotaType;
-	
-	@Column(name = "quota_leave")
+
+	@Column(name = "quota_value")
 	private String quotaValue;
-	
+
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	@OneToOne
 	private Company company;
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
 
 	public String getCode() {
 		return code;
@@ -238,5 +231,13 @@ public class Leave extends BaseEntity {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public Lov getLovLeave() {
+		return lovLeave;
+	}
+
+	public void setLovLeave(Lov lovLeave) {
+		this.lovLeave = lovLeave;
 	}
 }

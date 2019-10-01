@@ -23,7 +23,7 @@ import com.demo.service.TimeDefinitionService;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/api/v1/time")
 public class TimeDefinitionController {
 	
 	@Autowired
@@ -36,7 +36,7 @@ public class TimeDefinitionController {
 			List<TimeDefinition> list = tdService.findAll();
 			return new ResponseEntity<List<TimeDefinition>>(list, HttpStatus.OK);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 	}
 	
@@ -47,7 +47,7 @@ public class TimeDefinitionController {
 			TimeDefinition td = tdService.findById(id);
 			return new ResponseEntity<TimeDefinition>(td, HttpStatus.OK);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class TimeDefinitionController {
 			TimeDefinition td = tdService.findByCode(code);
 			return new ResponseEntity<TimeDefinition>(td, HttpStatus.OK);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 	}
 	
@@ -91,7 +91,7 @@ public class TimeDefinitionController {
 			tdService.delete(id);
 			return ResponseEntity.ok("Delete success with Time Definition ID: "+id);
 		} catch (Exception e) {
-		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
+		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 

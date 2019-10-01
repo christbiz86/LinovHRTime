@@ -13,46 +13,34 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(
-		name = "time_attendances", 
-		uniqueConstraints = @UniqueConstraint(
-				columnNames = {"company_id", "code"}
-				)
-		)
-public class Attendance extends BaseEntity {
-	public static final long serialVersionUID = 1L;
-	
-	@OneToOne
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
-    private Company company;
-	
+@Table(name = "time_worksheet_activities", uniqueConstraints = @UniqueConstraint(columnNames = { "company_id",
+		"code" }))
+public class WorksheetActivity extends BaseEntity {
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "code")
 	private String code;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
+	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	@OneToOne
-    @JoinColumn(name = "lov_permit", referencedColumnName = "id")
-	private Lov lovPermit;
-
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
+	private Company company;
 
 	public String getCode() {
 		return code;
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if (code == null) {
+			this.code = new String();
+		} else {
+			this.code = code;
+		}
 	}
 
 	public String getName() {
@@ -60,7 +48,11 @@ public class Attendance extends BaseEntity {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name == null) {
+			this.name = new String();
+		} else {
+			this.name = name;
+		}
 	}
 
 	public String getDescription() {
@@ -68,15 +60,22 @@ public class Attendance extends BaseEntity {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if (description == null) {
+			this.description = new String();
+		} else {
+			this.description = description;
+		}
 	}
 
-	public Lov getLovPermit() {
-		return lovPermit;
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setLovPermit(Lov lovPermit) {
-		this.lovPermit = lovPermit;
+	public void setCompany(Company company) {
+		if (company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
-
 }
