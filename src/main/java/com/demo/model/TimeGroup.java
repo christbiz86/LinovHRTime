@@ -1,5 +1,7 @@
 package com.demo.model;
 
+import java.sql.Time;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,6 +49,12 @@ public class TimeGroup extends BaseEntity {
 	
 	@Column(name="is_absence_as_annual_leave")
 	private Boolean isAbsenceAsAnnLeave;
+	
+	@Column(name="ovt_rounding")
+	private Time ovtRounding;
+	
+	@Column(name="late_tolerance")
+	private Time lateTolerance;
 
 	public Company getCompany() {
 		return company;
@@ -142,5 +150,21 @@ public class TimeGroup extends BaseEntity {
 
 	public void setIsAbsenceAsAnnLeave(Boolean isAbsenceAsAnnLeave) {
 		this.isAbsenceAsAnnLeave = isAbsenceAsAnnLeave;
+	}
+
+	public Time getOvtRounding() {
+		return ovtRounding;
+	}
+
+	public void setOvtRounding(Time ovtRounding) {
+		this.ovtRounding = ovtRounding;
+	}
+
+	public Time getLateTolerance() {
+		return lateTolerance;
+	}
+
+	public void setLateTolerance(Time lateTolerance) {
+		this.lateTolerance = lateTolerance;
 	}
 }

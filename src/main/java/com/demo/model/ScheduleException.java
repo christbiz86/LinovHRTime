@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -18,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name="time_time_group_schedules",uniqueConstraints = @UniqueConstraint(columnNames = {"time_group_id","code"}))
+@Table(name="time_schedule_exceptions",uniqueConstraints = @UniqueConstraint(columnNames = {"leave_id","employee_id","date"}))
 public class ScheduleException extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
@@ -30,15 +28,12 @@ public class ScheduleException extends BaseEntity {
     @OneToOne
 	private Employee employee;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="date")
 	private Date date;
 	
-	@Temporal(TemporalType.TIME)
 	@Column(name="time_in")
 	private Timestamp timeIn;
 	
-	@Temporal(TemporalType.TIME)
 	@Column(name="time_out")
 	private Timestamp timeOut;
 	

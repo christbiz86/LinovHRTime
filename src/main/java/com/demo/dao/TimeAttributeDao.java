@@ -14,10 +14,10 @@ public class TimeAttributeDao extends AbstractJpaDao<TimeAttribute> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public TimeAttribute findByBk(String tGroupId,String code) {
-		List<TimeAttribute> list= super.entityManager.createQuery("FROM TimeAttribute WHERE timeGroup.id=:tGroupId AND code=:code ")
+	public TimeAttribute findByBk(String tGroupId,String empId) {
+		List<TimeAttribute> list= super.entityManager.createQuery("FROM TimeAttribute WHERE timeGroup.id=:tGroupId AND employee.id=:empId ")
 				.setParameter("tGroupId", tGroupId)
-				.setParameter("code", code)
+				.setParameter("empId", empId)
 				.getResultList();
 		if (list.size() == 0) {
 			return new TimeAttribute();
@@ -27,8 +27,8 @@ public class TimeAttributeDao extends AbstractJpaDao<TimeAttribute> {
 		}
 	}
 	
-	public boolean isBkExist(String tGroupId,String code) {
-		if(findByBk(tGroupId, code) == null) {
+	public boolean isBkExist(String tGroupId,String empId) {
+		if(findByBk(tGroupId, empId) == null) {
 			return false;
 		} else {
 			return true;

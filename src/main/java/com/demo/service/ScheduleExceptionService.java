@@ -29,7 +29,12 @@ public class ScheduleExceptionService {
 	}
 
 	public void valNonBk(ScheduleException scheduleException) throws Exception {
-
+		if (scheduleException.getDate() == null) {
+			throw new Exception("date cannot be emptied");
+		}
+		if (scheduleException.getReason().trim().isEmpty()) {
+			throw new Exception("reason cannot be emptied");
+		}
 	}
 	
 	public void valBkNotExist(ScheduleException scheduleException) throws Exception {

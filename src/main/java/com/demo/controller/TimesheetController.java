@@ -17,37 +17,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.ScheduleException;
-import com.demo.service.ScheduleExceptionService;
+import com.demo.model.Timesheet;
+import com.demo.service.TimesheetService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({ "/api/v1/time" })
-public class ScheduleExceptionController {
+public class TimesheetController {
 
 	@Autowired
-	private ScheduleExceptionService scheduleExceptionService;
+	private TimesheetService timesheetService;
 
-	@GetMapping(value = "/schedule-exceptions")
+	@GetMapping(value = "/timesheets")
 	@Transactional
-	public ResponseEntity<?> getScheduleExceptions() {
-		List<ScheduleException> scheduleException = scheduleExceptionService.findAll();
-		return ResponseEntity.ok(scheduleException);
+	public ResponseEntity<?> getTimesheets() {
+		List<Timesheet> timesheet = timesheetService.findAll();
+		return ResponseEntity.ok(timesheet);
 	}
 
-	@GetMapping(value = "/schedule-exception/{id}")
+	@GetMapping(value = "/timesheet/{id}")
 	@Transactional
-	public ResponseEntity<?> getScheduleExceptionById(@PathVariable String id) {
-		ScheduleException scheduleException = scheduleExceptionService.findById(id);
-		return ResponseEntity.ok(scheduleException);
+	public ResponseEntity<?> getTimesheetById(@PathVariable String id) {
+		Timesheet timesheet = timesheetService.findById(id);
+		return ResponseEntity.ok(timesheet);
 	}
 
-	@PostMapping(value = "/schedule-exception")
+	@PostMapping(value = "/timesheet")
 	@Transactional
-	public ResponseEntity<?> submit(@RequestBody ScheduleException scheduleException) throws Exception {
+	public ResponseEntity<?> submit(@RequestBody Timesheet timesheet) throws Exception {
 		try {
-			scheduleExceptionService.save(scheduleException);
+			timesheetService.save(timesheet);
 			return ResponseEntity.ok(HttpStatus.CREATED);
 		} catch (Exception e) {
 			System.out.println(e);
@@ -55,11 +55,11 @@ public class ScheduleExceptionController {
 		} 
 	}
 	
-	@PutMapping(value = "/schedule-exception")
+	@PutMapping(value = "/timesheet")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody ScheduleException scheduleException) throws Exception {
+	public ResponseEntity<?> update(@RequestBody Timesheet timesheet) throws Exception {
 		try {
-			scheduleExceptionService.update(scheduleException);
+			timesheetService.update(timesheet);
 			return ResponseEntity.ok(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.println(e);
@@ -67,11 +67,11 @@ public class ScheduleExceptionController {
 		}
 	}
 	
-	@DeleteMapping(value = "/schedule-exception/{id}")
+	@DeleteMapping(value = "/timesheet/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			scheduleExceptionService.delete(id);
+			timesheetService.delete(id);
 			return ResponseEntity.ok(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.println(e);

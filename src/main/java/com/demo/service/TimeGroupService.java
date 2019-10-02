@@ -34,6 +34,30 @@ public class TimeGroupService {
 		if (timeGroup.getCode().isEmpty()) {
 			throw new Exception("code cannot be emptied");
 		}
+		if (timeGroup.getIsIgnoreHoliday() == null) {
+			throw new Exception("is ignore holiday cannot be emptied");
+		}
+		if (timeGroup.getIsFlexyHour() == null) {
+			throw new Exception("is flexy hour cannot be emptied");
+		}
+		if (timeGroup.getIsAllowOvertime() == null) {
+			throw new Exception("is allow overtime cannot be emptied");
+		}
+		if (timeGroup.getIsFlexyHolidayOvertime() == null) {
+			throw new Exception("is flexy holiday overtime cannot be emptied");
+		}
+		if (timeGroup.getIsDefault() == null) {
+			throw new Exception("is default cannot be emptied");
+		}
+		if (timeGroup.getIsAbsenceAsAnnLeave() == null) {
+			throw new Exception("is absence as annual leave cannot be emptied");
+		}
+		if (timeGroup.getOvtRounding() == null) {
+			throw new Exception("ovt rounding cannot be emptied");
+		}
+		if (timeGroup.getLateTolerance() == null) {
+			throw new Exception("late tolerance cannot be emptied");
+		}
 	}
 	
 	public void valBkNotExist(TimeGroup timeGroup) throws Exception {

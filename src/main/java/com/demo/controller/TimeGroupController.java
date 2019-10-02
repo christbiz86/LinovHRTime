@@ -23,7 +23,7 @@ import com.demo.service.TimeGroupService;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
-@RequestMapping({ "/api/v1" })
+@RequestMapping({ "/api/v1/time" })
 public class TimeGroupController {
 
 	@Autowired

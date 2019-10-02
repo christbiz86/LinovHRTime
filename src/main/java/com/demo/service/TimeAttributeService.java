@@ -32,17 +32,17 @@ public class TimeAttributeService {
 	}
 	
 	public void valBkNotExist(TimeAttribute timeAttribute) throws Exception {
-		if (timeAttributeDao.isBkExist(timeAttribute.getTimeGroup().getId(), timeAttribute.getCode())) {
+		if (timeAttributeDao.isBkExist(timeAttribute.getTimeGroup().getId(), timeAttribute.getEmployee().getId())) {
 			throw new Exception("Data already exist");
 		}
 	}
 
 	public void valBkNotChange(TimeAttribute timeAttribute) throws Exception {
 		String tGroup = findById(timeAttribute.getId()).getTimeGroup().getId();
-		String code = findById(timeAttribute.getId()).getCode();
+		String empId = findById(timeAttribute.getId()).getEmployee().getId();
 
-		if (!timeAttribute.getTimeGroup().getId().equals(tGroup) || !timeAttribute.getCode().equals(code)) {
-			throw new Exception("time group or code cannot be changed");
+		if (!timeAttribute.getTimeGroup().getId().equals(tGroup) || !timeAttribute.getEmployee().getId().equals(empId)) {
+			throw new Exception("time group or employee cannot be changed");
 		}
 	}
 
@@ -52,8 +52,10 @@ public class TimeAttributeService {
 				throw new Exception("time group cannot be emptied");
 			}
 		}
-		if (timeAttribute.getCode() == null || timeAttribute.getCode().trim().isEmpty()) {
-			throw new Exception("code cannot be emptied");
+		if (timeAttribute.getEmployee() == null) {
+			if (timeAttribute.getEmployee().getId().isEmpty()) {
+				throw new Exception("code cannot be emptied");
+			}	
 		}
 	}
 
