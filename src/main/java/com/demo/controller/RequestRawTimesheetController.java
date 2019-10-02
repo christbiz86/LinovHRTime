@@ -42,7 +42,7 @@ public class RequestRawTimesheetController {
 		}
 	}
 	
-	@GetMapping(value = "/request-raw-timesheets/{id}")
+	@GetMapping(value = "/request-raw-timesheet/{id}")
 	@Transactional
 	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
 		try {
@@ -53,7 +53,7 @@ public class RequestRawTimesheetController {
 		}
 	}
 	
-	@PostMapping(value = "/request-raw-timesheets")
+	@PostMapping(value = "/request-raw-timesheet")
 	@Transactional
 	public ResponseEntity<?> insert(@RequestBody RequestRawTimesheet rrt) throws Exception {
 		try {
@@ -64,23 +64,23 @@ public class RequestRawTimesheetController {
 		}
 	}
 	
-	@PutMapping(value = "/request-raw-timesheets")
+	@PutMapping(value = "/request-raw-timesheet")
 	@Transactional
 	public ResponseEntity<?> update(@RequestBody RequestRawTimesheet rrt) throws Exception {
 		try {
 			rrtService.update(rrt);
-			return ResponseEntity.ok("Update success with Permit Request ID: "+rrt.getId());
+			return ResponseEntity.ok("Update success with Request Raw Timesheet ID: "+rrt.getId());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/request-raw-timesheets/{id}")
+	@DeleteMapping(value = "/request-raw-timesheet/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
 			rrtService.delete(id);
-			return ResponseEntity.ok("Delete success with Permit Request ID: "+id);
+			return ResponseEntity.ok("Delete success with Request Raw Timesheet ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}

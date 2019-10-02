@@ -57,7 +57,7 @@ public class LovController {
 		}
 	}
 	
-	@GetMapping(value = "/event-types")
+	@GetMapping(value = "/look-ups")
     @Transactional
     public ResponseEntity<?> getAllLookUp(){
         try {
