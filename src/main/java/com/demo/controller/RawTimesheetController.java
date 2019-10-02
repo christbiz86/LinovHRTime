@@ -18,66 +18,67 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.Leave;
-import com.demo.service.LeaveService;
+import com.demo.model.RawTimesheet;
+import com.demo.service.RawTimesheetService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1/time"})
-public class LeaveController {
+public class RawTimesheetController {
 	@Autowired
-	private LeaveService leaveService;
+	private RawTimesheetService rawTimesheetService;
 	
-	@GetMapping(value = "/leaves")
+	@GetMapping(value = "/raw-timesheets")
 	@Transactional
-	public ResponseEntity<?> getAllLeave(){
+	public ResponseEntity<?> getAllRawTimes() {
 		try {
-			List<Leave> list = leaveService.findAll();
+			List<RawTimesheet> list = rawTimesheetService.findAll();
 			return ResponseEntity.ok(list);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@GetMapping(value = "/leave/{id}")
+	@GetMapping(value = "/raw-timesheet/{id}")
 	@Transactional
-	public ResponseEntity<?> getLeaveById(@PathVariable String id) {
+	public ResponseEntity<?> getLocationById(@PathVariable String id) {
 		try {
-			Leave leave = leaveService.findById(id);
-			return ResponseEntity.ok(leave);
+			RawTimesheet rawTimesheet = rawTimesheetService.findById(id);
+			return ResponseEntity.ok(rawTimesheet);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
+		
 	}
 	
-	@PostMapping(value = "/leave")
+	@PostMapping(value = "/raw-timesheet")
 	@Transactional
-	public ResponseEntity<?> submit(@RequestBody Leave leave) throws Exception {
+	public ResponseEntity<?> submit(@RequestBody RawTimesheet rawTimesheet) throws Exception {
 		try {
-			leaveService.save(leave);
+			rawTimesheetService.save(rawTimesheet);
 			return ResponseEntity.ok("Data Have Successfully Saved");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/leave")
+	@PutMapping(value = "/raw-timesheet")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody Leave leave) throws Exception {
+	public ResponseEntity<?> update(@RequestBody RawTimesheet rawTimesheet) throws Exception {
 		try {
-			leaveService.update(leave);
+			rawTimesheetService.update(rawTimesheet);
 			return ResponseEntity.ok("Data Have Successfully Updated");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/leave/{id}")
+	@DeleteMapping(value = "/raw-timesheet/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			leaveService.delete(id);
+			rawTimesheetService.delete(id);
 			return ResponseEntity.ok("Data Have Successfully Deleted");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

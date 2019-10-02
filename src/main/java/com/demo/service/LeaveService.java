@@ -42,11 +42,8 @@ public class LeaveService {
 		if(leave.getName().isEmpty()) {
 			throw new Exception("Leave Name cannot be empty");
 		}
-		if(leave.getType().isEmpty()) {
-			throw new Exception("Leave Type cannot be empty");
-		}
 		if(leave.getIsAnnualLeave() == null) {
-			throw new Exception("Type Of Leave cannot be empty");
+			throw new Exception("Type Of Annual Leave cannot be empty");
 		}
 		if(leave.getIsAllowHalfDay() == null) {
 			throw new Exception("Half Day of Leave cannot be empty");
@@ -103,6 +100,8 @@ public class LeaveService {
 		valBkNotNull(leave);
 		valBkNotChange(leave);
 		valNonBk(leave);
+		
+		leaveDao.update(leave);
 	}
 	
 	public void delete(String id) throws Exception {

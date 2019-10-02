@@ -57,7 +57,7 @@ public class EventService {
 	}
 	
 	private void valBkNotExist(Event event)throws Exception{
-		if(eventDao.isBkExist(event.getName(), event.getCompany().getId(), event.getEventStart() == null)) {
+		if(eventDao.isBkExist(event.getName(), event.getCompany().getId(), event.getEventStart())) {
 			throw new Exception("Data already exist");
 		}
 	}
@@ -65,14 +65,14 @@ public class EventService {
 	private void valBkNotChange(Event event)throws Exception{
 		String company = findById(event.getId()).getCompany().getId();
 		String name = findById(event.getId()).getName();
-		String eventStart = findById(event.getId()).getEventStart();
+		Timestamp eventStart = findById(event.getId()).getEventStart();
 		if(!event.getCompany().getId().equals(company)) {
 			throw new Exception("Company is cannot be changed");
 		}
 		if(!event.getName().equals(name)) {
 			throw new Exception("Event Name is cannot be changed");
 		}
-		if(event.getEventStart().equals(eventStart)) {
+		if(event.getEventStart() == eventStart) {
 			throw new Exception("Event Start is cannot be changed");
 		}
 	}
@@ -89,5 +89,25 @@ public class EventService {
 		if(event.getEventStart() == null) {
 			throw new Exception("Event Start cannot be empty");
 		}
+	}
+	
+	public void save(Event event) throws Exception {
+		valBkNotNull(event);
+		valNonBk(event);
+		valBkNotExist(event);
+		eventDao.create(event);
+	}
+	
+	public void update(Event event) throws Exception {
+		valIdNotNull(event);
+		valIdExist(event.getId());
+		valBkNotNull(event);
+		valBkNotChange(event);
+		valNonBk(event);
+		eventDao.update(event);
+	}
+	
+	public void delete(String id) throws Exception {
+		eventDao.deleteById(id);
 	}
 }

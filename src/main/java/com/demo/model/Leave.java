@@ -17,9 +17,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 public class Leave extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name = "type")
-	private String type;
-	
 	@Column(name = "code")
 	private String code;
 	
@@ -41,7 +38,7 @@ public class Leave extends BaseEntity {
 	@Column(name = "day_taken_max")
 	private Integer dayTakenMax;
 	
-	@Column(name = "catty_max")
+	@Column(name = "carry_max")
 	private Integer carryMax;
 	
 	@Column(name = "carry_expiration_day")
@@ -54,6 +51,10 @@ public class Leave extends BaseEntity {
 	@JoinColumn(name = "lov_lcpt", referencedColumnName = "id")
 	@OneToOne
 	private Lov leavePart;
+	
+	@JoinColumn(name = "lov_leave", referencedColumnName = "id")
+	@OneToOne
+	private Lov lovLeave;
 	
 	@Column(name = "is_annual_leave")
 	private Integer isAnnualLeave;
@@ -73,20 +74,12 @@ public class Leave extends BaseEntity {
 	@Column(name = "quota_type")
 	private String quotaType;
 	
-	@Column(name = "quota_leave")
+	@Column(name = "quota_value")
 	private String quotaValue;
 	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	@OneToOne
 	private Company company;
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
 
 	public String getCode() {
 		return code;
@@ -238,5 +231,13 @@ public class Leave extends BaseEntity {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public Lov getLovLeave() {
+		return lovLeave;
+	}
+
+	public void setLovLeave(Lov lovLeave) {
+		this.lovLeave = lovLeave;
 	}
 }

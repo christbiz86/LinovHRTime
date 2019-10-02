@@ -18,8 +18,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "time_event_eligibilities", uniqueConstraints = @UniqueConstraint(columnNames = {"company_id", "event_id"}))
-public class EventEligibilities implements Serializable {
+@Table(name="time_leave_eligibilities",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","leave_id"}))
+public class LeaveEligibilities implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -30,10 +30,7 @@ public class EventEligibilities implements Serializable {
 	@Column(name = "value")
 	private String value;
 	
-	@Column(name = "privilege")
-	private String privilege;
-	
-	@JoinColumn(name = "lov_evel", referencedColumnName = "id")
+	@JoinColumn(name = "lov_lvel", referencedColumnName = "id")
 	@OneToOne
 	private Lov lovLevel;
 	
@@ -41,9 +38,9 @@ public class EventEligibilities implements Serializable {
 	@OneToOne
 	private Company company;
 	
-	@JoinColumn(name = "event_id", referencedColumnName = "id")
+	@JoinColumn(name = "leave_id", referencedColumnName = "id")
 	@OneToOne
-	private Event event;
+	private Leave leave;
 
 	public String getId() {
 		return id;
@@ -59,14 +56,6 @@ public class EventEligibilities implements Serializable {
 
 	public void setValue(String value) {
 		this.value = value;
-	}
-
-	public String getPrivilege() {
-		return privilege;
-	}
-
-	public void setPrivilege(String privilege) {
-		this.privilege = privilege;
 	}
 
 	public Lov getLovLevel() {
@@ -85,11 +74,11 @@ public class EventEligibilities implements Serializable {
 		this.company = company;
 	}
 
-	public Event getEvent() {
-		return event;
+	public Leave getLeave() {
+		return leave;
 	}
 
-	public void setEvent(Event event) {
-		this.event = event;
+	public void setLeave(Leave leave) {
+		this.leave = leave;
 	}
 }

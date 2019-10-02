@@ -18,66 +18,67 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.Leave;
-import com.demo.service.LeaveService;
+import com.demo.model.LeaveEligibilities;
+import com.demo.service.LeaveEligibilitiesService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1/time"})
-public class LeaveController {
+public class LeaveEligibilitiesController {
 	@Autowired
-	private LeaveService leaveService;
+	private LeaveEligibilitiesService eventEligibilitiesService;
 	
-	@GetMapping(value = "/leaves")
+	@GetMapping(value = "/leave-eligibilities")
 	@Transactional
-	public ResponseEntity<?> getAllLeave(){
+	public ResponseEntity<?> getAllLeaveEli() {
 		try {
-			List<Leave> list = leaveService.findAll();
+			List<LeaveEligibilities> list = eventEligibilitiesService.findAll();
 			return ResponseEntity.ok(list);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@GetMapping(value = "/leave/{id}")
+	@GetMapping(value = "/leave-eligibility/{id}")
 	@Transactional
-	public ResponseEntity<?> getLeaveById(@PathVariable String id) {
+	public ResponseEntity<?> getLeaveEliById(@PathVariable String id) {
 		try {
-			Leave leave = leaveService.findById(id);
-			return ResponseEntity.ok(leave);
+			LeaveEligibilities location = eventEligibilitiesService.findById(id);
+			return ResponseEntity.ok(location);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
+		
 	}
 	
-	@PostMapping(value = "/leave")
+	@PostMapping(value = "/leave-eligibility")
 	@Transactional
-	public ResponseEntity<?> submit(@RequestBody Leave leave) throws Exception {
+	public ResponseEntity<?> submit(@RequestBody LeaveEligibilities leaveEligibilities) throws Exception {
 		try {
-			leaveService.save(leave);
+			eventEligibilitiesService.save(leaveEligibilities);
 			return ResponseEntity.ok("Data Have Successfully Saved");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/leave")
+	@PutMapping(value = "/leave-eligibility")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody Leave leave) throws Exception {
+	public ResponseEntity<?> update(@RequestBody LeaveEligibilities leaveEligibilities) throws Exception {
 		try {
-			leaveService.update(leave);
+			eventEligibilitiesService.update(leaveEligibilities);
 			return ResponseEntity.ok("Data Have Successfully Updated");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/leave/{id}")
+	@DeleteMapping(value = "/leave-eligibility/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			leaveService.delete(id);
+			eventEligibilitiesService.delete(id);
 			return ResponseEntity.ok("Data Have Successfully Deleted");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
