@@ -50,7 +50,11 @@ public class EventEligibilities implements Serializable {
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		if(id == null) {
+			this.id = new String();
+		} else {
+			this.id = id;
+		}
 	}
 
 	public String getValue() {
@@ -58,7 +62,11 @@ public class EventEligibilities implements Serializable {
 	}
 
 	public void setValue(String value) {
-		this.value = value;
+		if(value == null) {
+			this.value = new String();
+		} else {
+			this.value = value;
+		}
 	}
 
 	public String getPrivilege() {
@@ -66,7 +74,11 @@ public class EventEligibilities implements Serializable {
 	}
 
 	public void setPrivilege(String privilege) {
-		this.privilege = privilege;
+		if(privilege == null) {
+			this.privilege = new String();
+		} else {
+			this.privilege = privilege;
+		}
 	}
 
 	public Lov getLovLevel() {
@@ -74,7 +86,11 @@ public class EventEligibilities implements Serializable {
 	}
 
 	public void setLovLevel(Lov lovLevel) {
-		this.lovLevel = lovLevel;
+		if(lovLevel == null) {
+			this.lovLevel = new Lov();
+		} else {
+			this.lovLevel = lovLevel;
+		}
 	}
 
 	public Company getCompany() {
@@ -82,7 +98,11 @@ public class EventEligibilities implements Serializable {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Event getEvent() {
@@ -90,6 +110,10 @@ public class EventEligibilities implements Serializable {
 	}
 
 	public void setEvent(Event event) {
-		this.event = event;
+		if(event == null) {
+			this.event = new Event();
+		} else {
+			this.event = event;
+		}
 	}
 }

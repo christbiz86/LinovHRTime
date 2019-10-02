@@ -86,7 +86,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if(code == null) {
+			this.code = new String();
+		} else {
+			this.code = code;
+		}
 	}
 
 	public String getName() {
@@ -94,7 +98,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name == null) {
+			this.name = new String();
+		} else {
+			this.name = name;
+		}
 	}
 
 	public String getDescription() {
@@ -230,7 +238,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Lov getLovLeave() {
@@ -238,6 +250,10 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setLovLeave(Lov lovLeave) {
-		this.lovLeave = lovLeave;
+		if(lovLeave == null) {
+			this.lovLeave = new Lov();
+		} else {
+			this.lovLeave = lovLeave;
+		}
 	}
 }

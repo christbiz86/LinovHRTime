@@ -53,7 +53,11 @@ public class Event extends BaseEntity {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name == null) {
+			this.name = new String();
+		} else {
+			this.name = name;
+		}
 	}
 
 	public Timestamp getEventStart() {
@@ -85,7 +89,11 @@ public class Event extends BaseEntity {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if(description == null) {
+			this.description = new String();
+		} else {
+			this.description = description;
+		}
 	}
 
 	public String getColor() {
@@ -93,7 +101,11 @@ public class Event extends BaseEntity {
 	}
 
 	public void setColor(String color) {
-		this.color = color;
+		if(color == null) {
+			this.color = new String();
+		} else {
+			this.color = color;
+		}
 	}
 
 	public Boolean getIsFullDay() {
@@ -109,7 +121,11 @@ public class Event extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Leave getLeave() {

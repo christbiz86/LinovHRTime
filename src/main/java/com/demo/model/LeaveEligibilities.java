@@ -47,7 +47,11 @@ public class LeaveEligibilities implements Serializable {
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		if(id == null) {
+			this.id = new String();
+		} else {
+			this.id = id;
+		}
 	}
 
 	public String getValue() {
@@ -55,7 +59,11 @@ public class LeaveEligibilities implements Serializable {
 	}
 
 	public void setValue(String value) {
-		this.value = value;
+		if(value == null) {
+			this.value = new String();
+		} else {
+			this.value = value;
+		}
 	}
 
 	public Lov getLovLevel() {
@@ -63,7 +71,11 @@ public class LeaveEligibilities implements Serializable {
 	}
 
 	public void setLovLevel(Lov lovLevel) {
-		this.lovLevel = lovLevel;
+		if(lovLevel == null) {
+			this.lovLevel = new Lov();
+		} else {
+			this.lovLevel = lovLevel;
+		}
 	}
 
 	public Company getCompany() {
@@ -71,7 +83,11 @@ public class LeaveEligibilities implements Serializable {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Leave getLeave() {
@@ -79,6 +95,10 @@ public class LeaveEligibilities implements Serializable {
 	}
 
 	public void setLeave(Leave leave) {
-		this.leave = leave;
+		if(leave == null) {
+			this.leave = new Leave();
+		} else {
+			this.leave = leave;
+		}
 	}
 }
