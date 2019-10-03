@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.combo.EventTypeComboBean;
 import com.demo.combo.LookUpComboBean;
+import com.demo.combo.PermitTypeComboBean;
 import com.demo.combo.TimeDefinitionComboBean;
 import com.demo.model.Lov;
 import com.demo.model.TimeDefinition;
@@ -34,6 +35,9 @@ public class LovController {
 	
 	@Autowired
 	private LookUpComboBean luComboBean;
+
+    @Autowired
+    private PermitTypeComboBean ptComboBean;
 	
 	@GetMapping(value = "/time-definitions")
     @Transactional
@@ -48,7 +52,7 @@ public class LovController {
 	
 	@GetMapping(value = "/event-types")
     @Transactional
-    public ResponseEntity<?> getAllEventType(){
+    public ResponseEntity<?> getAllEventTypes(){
         try {
         	List<Lov> etList = etComboBean.getList();
             return new ResponseEntity<List<Lov>>(etList,HttpStatus.OK);
@@ -59,10 +63,21 @@ public class LovController {
 	
 	@GetMapping(value = "/look-ups")
     @Transactional
-    public ResponseEntity<?> getAllLookUp(){
+    public ResponseEntity<?> getAllLookUps(){
         try {
         	List<Lov> luList = luComboBean.getList();
             return new ResponseEntity<List<Lov>>(luList,HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}
+	}
+	
+	@GetMapping(value = "/look-ups")
+    @Transactional
+    public ResponseEntity<?> getAllPermitTypes(){
+        try {
+        	List<Lov> ptList = ptComboBean.getList();
+            return new ResponseEntity<List<Lov>>(ptList,HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
