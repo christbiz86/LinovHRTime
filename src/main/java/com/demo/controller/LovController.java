@@ -72,7 +72,7 @@ public class LovController {
 		}
 	}
 	
-	@GetMapping(value = "/look-ups")
+	@GetMapping(value = "/permit-types")
     @Transactional
     public ResponseEntity<?> getAllPermitTypes(){
         try {
