@@ -3,7 +3,6 @@ package com.demo.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.model.TimeDefinition;
 
@@ -15,7 +14,6 @@ public class TimeDefinitionDao extends AbstractJpaDao<TimeDefinition>{
     }
 
     @SuppressWarnings("unchecked")
-    @Transactional
 	public TimeDefinition findByCode(String code) {
 		List<TimeDefinition> list = super.entityManager
                 .createQuery("FROM TimeDefinition WHERE code = :code")
@@ -30,7 +28,6 @@ public class TimeDefinitionDao extends AbstractJpaDao<TimeDefinition>{
     }
 
     @SuppressWarnings("unchecked")
-    @Transactional
 	public TimeDefinition findByBk(String code, String company) {
 		List<TimeDefinition> list = super.entityManager
                 .createQuery("FROM TimeDefinition WHERE code = :code AND company.id = :company")

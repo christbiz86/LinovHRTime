@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.model.RequestRawTimesheet;
 
@@ -16,7 +15,6 @@ public class RequestRawTimesheetDao extends AbstractJpaDao<RequestRawTimesheet> 
     }
 	
 	@SuppressWarnings("unchecked")
-    @Transactional
 	public RequestRawTimesheet findByBk(String company, String employee, Date date) {
 		List<RequestRawTimesheet> list = super.entityManager
                 .createQuery("FROM RequestRawTimesheet "

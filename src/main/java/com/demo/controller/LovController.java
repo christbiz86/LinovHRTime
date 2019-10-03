@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.combo.EventTypeComboBean;
+import com.demo.combo.LeaveComboBean;
 import com.demo.combo.LookUpComboBean;
 import com.demo.combo.PermitTypeComboBean;
 import com.demo.combo.TimeDefinitionComboBean;
+import com.demo.model.Leave;
 import com.demo.model.Lov;
 import com.demo.model.TimeDefinition;
 
@@ -38,6 +40,9 @@ public class LovController {
 
     @Autowired
     private PermitTypeComboBean ptComboBean;
+    
+    @Autowired
+    private LeaveComboBean leaveComboBean;
 	
 	@GetMapping(value = "/time-definitions")
     @Transactional
@@ -78,6 +83,17 @@ public class LovController {
         try {
         	List<Lov> ptList = ptComboBean.getList();
             return new ResponseEntity<List<Lov>>(ptList,HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}
+	}
+	
+	@GetMapping(value = "/leaves")
+    @Transactional
+    public ResponseEntity<?> getAllLeaves(){
+        try {
+        	List<Leave> leaveList = leaveComboBean.getList();
+            return new ResponseEntity<List<Leave>>(leaveList,HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}

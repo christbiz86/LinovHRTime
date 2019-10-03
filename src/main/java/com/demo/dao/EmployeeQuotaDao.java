@@ -3,7 +3,6 @@ package com.demo.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.model.EmployeeQuota;
 
@@ -15,7 +14,6 @@ public class EmployeeQuotaDao extends AbstractJpaDao<EmployeeQuota>{
     }
 	
 	@SuppressWarnings("unchecked")
-    @Transactional
 	public EmployeeQuota findByBk(String employee, String leave) {
 		List<EmployeeQuota> list = super.entityManager
                 .createQuery("FROM EmployeeQuota WHERE employee.id = :employee AND leave.id = :leave")

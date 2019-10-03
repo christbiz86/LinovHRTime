@@ -3,7 +3,6 @@ package com.demo.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.model.PermitRequest;
 
@@ -15,7 +14,6 @@ public class PermitRequestDao extends AbstractJpaDao<PermitRequest>{
     }
 
     @SuppressWarnings("unchecked")
-    @Transactional
 	public PermitRequest findByBk(String company, String lov_permit) {
 		List<PermitRequest> list = super.entityManager
                 .createQuery("FROM PermitRequest WHERE company.id = :company AND lovPermit.id = :lov_permit")

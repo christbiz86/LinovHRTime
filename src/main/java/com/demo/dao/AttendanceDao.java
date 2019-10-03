@@ -3,7 +3,6 @@ package com.demo.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.model.Attendance;
 
@@ -16,7 +15,6 @@ public class AttendanceDao extends AbstractJpaDao<Attendance>{
     }
 
     @SuppressWarnings("unchecked")
-    @Transactional
 	public Attendance findByCode(String code) {
 		List<Attendance> list = super.entityManager
                 .createQuery("FROM Attendance WHERE code = :code")
@@ -31,7 +29,6 @@ public class AttendanceDao extends AbstractJpaDao<Attendance>{
     }
 
     @SuppressWarnings("unchecked")
-    @Transactional
 	public Attendance findByBk(String code, String company) {
 		List<Attendance> list = super.entityManager
                 .createQuery("FROM Attendance WHERE code = :code AND company.id = :company")
