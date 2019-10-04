@@ -28,7 +28,12 @@ public class TimeAttributeService {
 	}
 
 	public void valNonBk(TimeAttribute timeAttribute) throws Exception {
-
+		if (timeAttribute.getEffBegin() == null) {
+			throw new Exception("eff begin cannot be emptied");
+		}
+		if (timeAttribute.getEffEnd() == null) {
+			throw new Exception("eff end cannot be emptied");
+		}
 	}
 	
 	public void valBkNotExist(TimeAttribute timeAttribute) throws Exception {

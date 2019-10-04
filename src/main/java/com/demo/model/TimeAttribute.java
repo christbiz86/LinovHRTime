@@ -1,6 +1,9 @@
 package com.demo.model;
 
+import java.util.Date;
+
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -23,6 +26,12 @@ public class TimeAttribute extends BaseEntity {
 	@JoinColumn(name = "employee_id", referencedColumnName = "id")
     @OneToOne
 	private Employee employee;
+	
+	@Column(name="eff_begin")
+	private Date effBegin;
+	
+	@Column(name="eff_end")
+	private Date effEnd;
 
 	public TimeGroup getTimeGroup() {
 		return timeGroup;
@@ -46,5 +55,21 @@ public class TimeAttribute extends BaseEntity {
 		} else {
 			this.employee = employee;	
 		}
+	}
+
+	public Date getEffBegin() {
+		return effBegin;
+	}
+
+	public void setEffBegin(Date effBegin) {
+		this.effBegin = effBegin;
+	}
+
+	public Date getEffEnd() {
+		return effEnd;
+	}
+
+	public void setEffEnd(Date effEnd) {
+		this.effEnd = effEnd;
 	}
 }

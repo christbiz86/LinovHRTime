@@ -1,6 +1,7 @@
 package com.demo.model;
 
 import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
@@ -55,6 +56,15 @@ public class TimeGroup extends BaseEntity {
 	
 	@Column(name="late_tolerance")
 	private Time lateTolerance;
+	
+	@Column(name="eff_begin")
+	private Date effBegin;
+	
+	@Column(name="eff_end")
+	private Date effEnd;
+	
+	@Column(name = "is_active")
+	private Boolean isActive = true;
 
 	public Company getCompany() {
 		return company;
@@ -166,5 +176,29 @@ public class TimeGroup extends BaseEntity {
 
 	public void setLateTolerance(Time lateTolerance) {
 		this.lateTolerance = lateTolerance;
+	}
+
+	public Date getEffBegin() {
+		return effBegin;
+	}
+
+	public void setEffBegin(Date effBegin) {
+		this.effBegin = effBegin;
+	}
+
+	public Date getEffEnd() {
+		return effEnd;
+	}
+
+	public void setEffEnd(Date effEnd) {
+		this.effEnd = effEnd;
+	}
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 }

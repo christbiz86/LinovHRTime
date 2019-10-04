@@ -58,6 +58,15 @@ public class TimeGroupService {
 		if (timeGroup.getLateTolerance() == null) {
 			throw new Exception("late tolerance cannot be emptied");
 		}
+		if (timeGroup.getEffBegin() == null) {
+			throw new Exception("eff begin cannot be emptied");
+		}
+		if (timeGroup.getEffEnd() == null) {
+			throw new Exception("eff end cannot be emptied");
+		}
+		if (timeGroup.getIsActive() == null) {
+			throw new Exception("is active cannot be emptied");
+		}
 	}
 	
 	public void valBkNotExist(TimeGroup timeGroup) throws Exception {
