@@ -68,6 +68,15 @@ public class EmployeeQuotaService {
 		if(eq.getCarriedQuota() == null) {
 			throw new Exception("Carry quota can't empty!");
 		}
+		if(eq.getIsActive() == null) {
+			throw new Exception("isActive can't empty!");
+		}
+		if(eq.getEffBegin() == null) {
+			throw new Exception("Effective Begin can't empty!");
+		}
+		if(eq.getEffEnd() == null) {
+			throw new Exception("Effective End can't empty!");
+		}
 	}
 	
 	public void insert(EmployeeQuota eq) throws Exception {

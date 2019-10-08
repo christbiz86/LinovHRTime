@@ -73,16 +73,19 @@ public class TimeDefinitionService {
 			throw new Exception("LOV Time Definition Value Type can't empty!");
 		}
 		if(td.getIsFlexy() == null) {
-			throw new Exception("is_flexy can't empty!");
+			throw new Exception("isFlexy can't empty!");
 		}
 		if(td.getIsWorkday() == null) {
-			throw new Exception("is_working can't empty!");
+			throw new Exception("isWorking can't empty!");
 		}
 		if(td.getIsValue1() == null) {
-			throw new Exception("is_value1 can't empty!");
+			throw new Exception("isValue1 can't empty!");
 		}
 		if(td.getIsValue2() == null) {
-			throw new Exception("is_value2 can't empty!");
+			throw new Exception("isValue2 can't empty!");
+		}
+		if(td.getIsActive() == null) {
+			throw new Exception("isActive can't empty!");
 		}
 	}
 	

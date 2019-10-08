@@ -66,16 +66,16 @@ public class RequestRawTimesheet extends BaseEntity {
 	private String status;
 	
 	@Column(name = "time_in_lat")
-	private Float timeInLat;
+	private Double timeInLat;
 	
 	@Column(name = "time_in_long")
-	private Float timeInLong;
+	private Double timeInLong;
 	
 	@Column(name = "time_out_lat")
-	private Float timeOutLat;
+	private Double timeOutLat;
 	
 	@Column(name = "time_out_long")
-	private Float timeOutLong;
+	private Double timeOutLong;
 	
 	@Column(name = "timezone")
 	private String timezone;
@@ -85,7 +85,11 @@ public class RequestRawTimesheet extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Project getProject() {
@@ -93,7 +97,11 @@ public class RequestRawTimesheet extends BaseEntity {
 	}
 
 	public void setProject(Project project) {
-		this.project = project;
+		if(project == null) {
+			this.project = new Project();
+		} else {
+			this.project = project;
+		}
 	}
 
 	public Employee getEmployee() {
@@ -101,7 +109,11 @@ public class RequestRawTimesheet extends BaseEntity {
 	}
 
 	public void setEmployee(Employee employee) {
-		this.employee = employee;
+		if(employee == null) {
+			this.employee = new Employee();
+		} else {
+			this.employee = employee;
+		}
 	}
 
 	public WorksheetActivity getActivity() {
@@ -109,7 +121,11 @@ public class RequestRawTimesheet extends BaseEntity {
 	}
 
 	public void setActivity(WorksheetActivity activity) {
-		this.activity = activity;
+		if(activity == null) {
+			this.activity = new WorksheetActivity();
+		} else {
+			this.activity = activity;
+		}
 	}
 
 	public Date getDate() {
@@ -141,7 +157,11 @@ public class RequestRawTimesheet extends BaseEntity {
 	}
 
 	public void setValue1(Integer value1) {
-		this.value1 = value1;
+		if(value1 == null) {
+			this.value1 = 0;
+		} else {
+			this.value1 = value1;
+		}
 	}
 
 	public Integer getValue2() {
@@ -149,7 +169,11 @@ public class RequestRawTimesheet extends BaseEntity {
 	}
 
 	public void setValue2(Integer value2) {
-		this.value2 = value2;
+		if(value2 == null) {
+			this.value2 = 0;
+		} else {
+			this.value2 = value2;
+		}
 	}
 
 	public String getDescription() {
@@ -157,7 +181,11 @@ public class RequestRawTimesheet extends BaseEntity {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if(description.isEmpty()) {
+			this.description = new String();
+		} else {
+			this.description = description;
+		}
 	}
 
 	public String getDescription2() {
@@ -165,7 +193,11 @@ public class RequestRawTimesheet extends BaseEntity {
 	}
 
 	public void setDescription2(String description2) {
-		this.description2 = description2;
+		if(description2.isEmpty()) {
+			this.description2 = new String();
+		} else {
+			this.description2 = description2;
+		}
 	}
 
 	public String getStatus() {
@@ -173,39 +205,59 @@ public class RequestRawTimesheet extends BaseEntity {
 	}
 
 	public void setStatus(String status) {
-		this.status = status;
+		if(status.isEmpty()) {
+			this.status = new String();
+		} else {
+			this.status = status;
+		}
 	}
 
-	public Float getTimeInLat() {
+	public Double getTimeInLat() {
 		return timeInLat;
 	}
 
-	public void setTimeInLat(Float timeInLat) {
-		this.timeInLat = timeInLat;
+	public void setTimeInLat(Double timeInLat) {
+		if(timeInLat == null) {
+			this.timeInLat = 0D;
+		} else {
+			this.timeInLat = timeInLat;
+		}
 	}
 
-	public Float getTimeInLong() {
+	public Double getTimeInLong() {
 		return timeInLong;
 	}
 
-	public void setTimeInLong(Float timeInLong) {
-		this.timeInLong = timeInLong;
+	public void setTimeInLong(Double timeInLong) {
+		if(timeInLong == null) {
+			this.timeInLong = 0D;
+		} else {
+			this.timeInLong = timeInLong;
+		}
 	}
 
-	public Float getTimeOutLat() {
+	public Double getTimeOutLat() {
 		return timeOutLat;
 	}
 
-	public void setTimeOutLat(Float timeOutLat) {
-		this.timeOutLat = timeOutLat;
+	public void setTimeOutLat(Double timeOutLat) {
+		if(timeOutLat == null) {
+			this.timeOutLat = 0D;
+		} else {
+			this.timeOutLat = timeOutLat;
+		}
 	}
 
-	public Float getTimeOutLong() {
+	public Double getTimeOutLong() {
 		return timeOutLong;
 	}
 
-	public void setTimeOutLong(Float timeOutLong) {
-		this.timeOutLong = timeOutLong;
+	public void setTimeOutLong(Double timeOutLong) {
+		if(timeOutLong == null) {
+			this.timeOutLong = 0D;
+		} else {
+			this.timeOutLong = timeOutLong;
+		}
 	}
 
 	public String getTimezone() {
@@ -213,7 +265,11 @@ public class RequestRawTimesheet extends BaseEntity {
 	}
 
 	public void setTimezone(String timezone) {
-		this.timezone = timezone;
+		if(timezone.isEmpty()) {
+			this.timezone = new String();
+		} else {
+			this.timezone = timezone;
+		}
 	}
 
 }

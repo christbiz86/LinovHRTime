@@ -1,5 +1,7 @@
 package com.demo.model;
 
+import java.sql.Date;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,17 +37,58 @@ public class EmployeeQuota extends BaseEntity {
     private Employee employee;
 	
 	@Column(name = "max_quota")
-	private Float maxQuota;
+	private Double maxQuota;
 	
 	@Column(name = "carried_quota")
 	private Integer carriedQuota;
+	
+	@Column(name = "is_active")
+	private Boolean isActive = true;
+	
+	@Column(name = "eff_begin")
+	private Date effBegin;
+	
+	@Column(name = "eff_end")
+	private Date effEnd;
+    
+    public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public Date getEffBegin() {
+		return effBegin;
+	}
+
+	public void setEffBegin(Date effBegin) {
+		this.effBegin = effBegin;
+	}
+
+	public Date getEffEnd() {
+		return effEnd;
+	}
+
+	public void setEffEnd(Date effEnd) {
+		this.effEnd = effEnd;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		if(isActive == null) {
+			this.isActive = true;
+		} else {
+			this.isActive = isActive;
+		}
+	}
 
 	public Company getCompany() {
 		return company;
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Leave getLeave() {
@@ -53,7 +96,11 @@ public class EmployeeQuota extends BaseEntity {
 	}
 
 	public void setLeave(Leave leave) {
-		this.leave = leave;
+		if(leave == null) {
+			this.leave = new Leave();
+		} else {
+			this.leave = leave;
+		}
 	}
 
 	public Employee getEmployee() {
@@ -61,15 +108,23 @@ public class EmployeeQuota extends BaseEntity {
 	}
 
 	public void setEmployee(Employee employee) {
-		this.employee = employee;
+		if(employee == null) {
+			this.employee = new Employee();
+		} else {
+			this.employee = employee;
+		}
 	}
 
-	public Float getMaxQuota() {
+	public Double getMaxQuota() {
 		return maxQuota;
 	}
 
-	public void setMaxQuota(Float maxQuota) {
-		this.maxQuota = maxQuota;
+	public void setMaxQuota(Double maxQuota) {
+		if(maxQuota == null) {
+			this.maxQuota = 0D;
+		} else {
+			this.maxQuota = maxQuota;
+		}
 	}
 
 	public Integer getCarriedQuota() {
@@ -77,7 +132,11 @@ public class EmployeeQuota extends BaseEntity {
 	}
 
 	public void setCarriedQuota(Integer carriedQuota) {
-		this.carriedQuota = carriedQuota;
+		if(carriedQuota == null) {
+			this.carriedQuota = 0;
+		} else {
+			this.carriedQuota = carriedQuota;
+		}
 	}
 
 }

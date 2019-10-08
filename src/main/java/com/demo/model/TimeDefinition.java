@@ -76,6 +76,21 @@ public class TimeDefinition extends BaseEntity {
 	@OneToOne
     @JoinColumn(name = "time_group_id", referencedColumnName = "id")
     private TimeGroup timeGroup;
+	
+	@Column(name = "is_active")
+	private Boolean isActive = true;
+    
+    public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		if(isActive == null) {
+			this.isActive = true;
+		} else {
+			this.isActive = isActive;
+		}
+	}
 
 	public Company getCompany() {
 		return company;

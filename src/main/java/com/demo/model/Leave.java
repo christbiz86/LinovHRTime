@@ -86,7 +86,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if(code.isEmpty()) {
+			this.code = new String();
+		} else {
+			this.code = code;
+		}
 	}
 
 	public String getName() {
@@ -94,7 +98,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name.isEmpty()) {
+			this.name = new String();
+		} else {
+			this.name = name;
+		}
 	}
 
 	public String getDescription() {
@@ -102,7 +110,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if(description.isEmpty()) {
+			this.description = new String();
+		} else {
+			this.description = description;
+		}
 	}
 
 	public Integer getMaxQuota() {
@@ -110,7 +122,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setMaxQuota(Integer maxQuota) {
-		this.maxQuota = maxQuota;
+		if(maxQuota == null) {
+			this.maxQuota = 0;
+		} else {
+			this.maxQuota = maxQuota;
+		}
 	}
 
 	public Integer getQuotaExpiration() {
@@ -118,7 +134,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setQuotaExpiration(Integer quotaExpiration) {
-		this.quotaExpiration = quotaExpiration;
+		if(quotaExpiration == null) {
+			this.quotaExpiration = 0;
+		} else {
+			this.quotaExpiration = quotaExpiration;
+		}
 	}
 
 	public Integer getDayTakenMin() {
@@ -126,7 +146,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setDayTakenMin(Integer dayTakenMin) {
-		this.dayTakenMin = dayTakenMin;
+		if(dayTakenMin == null) {
+			this.dayTakenMin = 0;
+		} else {
+			this.dayTakenMin = dayTakenMin;
+		}
 	}
 
 	public Integer getDayTakenMax() {
@@ -134,7 +158,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setDayTakenMax(Integer dayTakenMax) {
-		this.dayTakenMax = dayTakenMax;
+		if(dayTakenMax == null) {
+			this.dayTakenMax = 0;
+		} else {
+			this.dayTakenMax = dayTakenMax;
+		}
 	}
 
 	public Integer getCarryMax() {
@@ -142,7 +170,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setCarryMax(Integer carryMax) {
-		this.carryMax = carryMax;
+		if(carryMax == null) {
+			this.carryMax = 0;
+		} else {
+			this.carryMax = carryMax;
+		}
 	}
 
 	public Integer getCarryExpirationDay() {
@@ -150,7 +182,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setCarryExpirationDay(Integer carryExpirationDay) {
-		this.carryExpirationDay = carryExpirationDay;
+		if(carryExpirationDay == null) {
+			this.carryExpirationDay = 0;
+		} else {
+			this.carryExpirationDay = carryExpirationDay;
+		}
 	}
 
 	public Lov getLeaveType() {
@@ -158,7 +194,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setLeaveType(Lov leaveType) {
-		this.leaveType = leaveType;
+		if(leaveType == null) {
+			this.leaveType = new Lov();
+		} else {
+			this.leaveType = leaveType;
+		}
 	}
 
 	public Lov getLeavePart() {
@@ -166,7 +206,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setLeavePart(Lov leavePart) {
-		this.leavePart = leavePart;
+		if(leavePart == null) {
+			this.leavePart = new Lov();
+		} else {
+			this.leavePart = leavePart;
+		}
 	}
 
 	public Integer getIsAnnualLeave() {
@@ -174,7 +218,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setIsAnnualLeave(Integer isAnnualLeave) {
-		this.isAnnualLeave = isAnnualLeave;
+		if(isAnnualLeave == null) {
+			this.isAnnualLeave = 0;
+		} else {
+			this.isAnnualLeave = isAnnualLeave;
+		}
 	}
 
 	public Integer getIsAllowHalfDay() {
@@ -182,7 +230,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setIsAllowHalfDay(Integer isAllowHalfDay) {
-		this.isAllowHalfDay = isAllowHalfDay;
+		if(isAllowHalfDay == null) {
+			this.isAllowHalfDay = 0;
+		} else {
+			this.isAllowHalfDay = isAllowHalfDay;
+		}
 	}
 
 	public Integer getIsAnnualLeaveDeductor() {
@@ -190,7 +242,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setIsAnnualLeaveDeductor(Integer isAnnualLeaveDeductor) {
-		this.isAnnualLeaveDeductor = isAnnualLeaveDeductor;
+		if(isAnnualLeaveDeductor == null) {
+			this.isAnnualLeaveDeductor = 0;
+		} else {
+			this.isAnnualLeaveDeductor = isAnnualLeaveDeductor;
+		}
 	}
 
 	public Integer getIsRequestAble() {
@@ -198,7 +254,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setIsRequestAble(Integer isRequestAble) {
-		this.isRequestAble = isRequestAble;
+		if(isRequestAble == null) {
+			this.isRequestAble = 0;
+		} else {
+			this.isRequestAble = isRequestAble;
+		}
 	}
 
 	public Integer getIsQuotaBased() {
@@ -206,7 +266,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setIsQuotaBased(Integer isQuotaBased) {
-		this.isQuotaBased = isQuotaBased;
+		if(isQuotaBased == null) {
+			this.isQuotaBased = 0;
+		} else {
+			this.isQuotaBased = isQuotaBased;
+		}
 	}
 
 	public String getQuotaType() {
@@ -214,7 +278,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setQuotaType(String quotaType) {
-		this.quotaType = quotaType;
+		if(quotaType.isEmpty()) {
+			this.quotaType = new String();
+		} else {
+			this.quotaType = quotaType;
+		}
 	}
 
 	public String getQuotaValue() {
@@ -222,7 +290,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setQuotaValue(String quotaValue) {
-		this.quotaValue = quotaValue;
+		if(quotaValue.isEmpty()) {
+			this.quotaValue = new String();
+		} else {
+			this.quotaValue = quotaValue;
+		}
 	}
 
 	public Company getCompany() {
@@ -230,7 +302,11 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Lov getLovLeave() {
@@ -238,6 +314,10 @@ public class Leave extends BaseEntity {
 	}
 
 	public void setLovLeave(Lov lovLeave) {
-		this.lovLeave = lovLeave;
+		if(lovLeave == null) {
+			this.lovLeave = new Lov();
+		} else {
+			this.lovLeave = lovLeave;
+		}
 	}
 }

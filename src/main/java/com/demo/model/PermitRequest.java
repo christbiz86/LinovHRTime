@@ -53,7 +53,11 @@ public class PermitRequest extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Lov getLovPermit() {
@@ -61,7 +65,11 @@ public class PermitRequest extends BaseEntity {
 	}
 
 	public void setLovPermit(Lov lovPermit) {
-		this.lovPermit = lovPermit;
+		if(lovPermit == null) {
+			this.lovPermit = new Lov();
+		} else {
+			this.lovPermit = lovPermit;
+		}
 	}
 
 	public Employee getEmployee() {
@@ -69,7 +77,11 @@ public class PermitRequest extends BaseEntity {
 	}
 
 	public void setEmployee(Employee employee) {
-		this.employee = employee;
+		if(employee == null) {
+			this.employee = new Employee();
+		} else {
+			this.employee = employee;
+		}
 	}
 
 	public String getFileReference() {
@@ -77,7 +89,11 @@ public class PermitRequest extends BaseEntity {
 	}
 
 	public void setFileReference(String fileReference) {
-		this.fileReference = fileReference;
+		if(fileReference.isEmpty()) {
+			this.fileReference = new String();
+		} else {
+			this.fileReference = fileReference;
+		}
 	}
 
 	public String getReason() {
@@ -85,7 +101,11 @@ public class PermitRequest extends BaseEntity {
 	}
 
 	public void setReason(String reason) {
-		this.reason = reason;
+		if(reason.isEmpty()) {
+			this.reason = new String();
+		} else {
+			this.reason = reason;
+		}
 	}
 
 	public Date getDate() {
@@ -101,7 +121,11 @@ public class PermitRequest extends BaseEntity {
 	}
 
 	public void setStatus(String status) {
-		this.status = status;
+		if(status.isEmpty()) {
+			this.status = new String();
+		} else {
+			this.status = status;
+		}
 	}
 
 }

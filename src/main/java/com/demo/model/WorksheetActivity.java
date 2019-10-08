@@ -30,6 +30,21 @@ public class WorksheetActivity extends BaseEntity {
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	@OneToOne
 	private Company company;
+	
+	@Column(name = "is_active")
+	private Boolean isActive = true;
+    
+    public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		if(isActive == null) {
+			this.isActive = true;
+		} else {
+			this.isActive = isActive;
+		}
+	}
 
 	public String getCode() {
 		return code;

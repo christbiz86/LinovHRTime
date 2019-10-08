@@ -44,7 +44,11 @@ public class Attendance extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public String getCode() {
@@ -52,7 +56,11 @@ public class Attendance extends BaseEntity {
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if(code.isEmpty()) {
+			this.code = new String();
+		} else {
+			this.code = code;
+		}
 	}
 
 	public String getName() {
@@ -60,7 +68,11 @@ public class Attendance extends BaseEntity {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name.isEmpty()) {
+			this.name = new String();
+		} else {
+			this.name = name;
+		}
 	}
 
 	public String getDescription() {
@@ -68,7 +80,11 @@ public class Attendance extends BaseEntity {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if(description.isEmpty()) {
+			this.description = new String();
+		} else {
+			this.description = description;
+		}
 	}
 
 	public Lov getLovPermit() {
@@ -76,7 +92,11 @@ public class Attendance extends BaseEntity {
 	}
 
 	public void setLovPermit(Lov lovPermit) {
-		this.lovPermit = lovPermit;
+		if(lovPermit == null) {
+			this.lovPermit = new Lov();
+		} else {
+			this.lovPermit = lovPermit;
+		}
 	}
 
 }
