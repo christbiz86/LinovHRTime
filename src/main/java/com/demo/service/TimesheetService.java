@@ -1,13 +1,14 @@
 package com.demo.service;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.TimesheetDao;
+import com.demo.model.LoginSession;
 import com.demo.model.Timesheet;
 
 @Service
@@ -70,7 +71,7 @@ public class TimesheetService {
 	}
 
 	public List<Timesheet> findAll() {
-		return timesheetDao.findAll();
+		return timesheetDao.findAll(((LoginSession)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getSelectedCompanyId());
 	}
 
 	public Timesheet findById(String id) {
@@ -78,7 +79,8 @@ public class TimesheetService {
 	}
 
 	public void save(Timesheet timesheet) throws Exception {
-		timesheet.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		valBkNotNull(timesheet);
+		valBkNotExist(timesheet);
 		valNonBk(timesheet);
 
 		timesheetDao.create(timesheet);
@@ -87,7 +89,8 @@ public class TimesheetService {
 	public void update(Timesheet timesheet) throws Exception {
 		valIdNotNull(timesheet.getId());
 		valIdExist(timesheet.getId());
-		timesheet.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+		valBkNotNull(timesheet);
+		valBkNotChange(timesheet);
 		valNonBk(timesheet);
 
 		timesheetDao.update(timesheet);

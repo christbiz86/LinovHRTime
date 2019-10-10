@@ -1,6 +1,5 @@
 package com.demo.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +72,8 @@ public class TimeAttributeService {
 	}
 
 	public void save(TimeAttribute timeAttribute) throws Exception {
-		timeAttribute.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		valBkNotNull(timeAttribute);
+		valBkNotExist(timeAttribute);
 		valNonBk(timeAttribute);
 
 		timeAttributeDao.create(timeAttribute);
@@ -82,7 +82,8 @@ public class TimeAttributeService {
 	public void update(TimeAttribute timeAttribute) throws Exception {
 		valIdNotNull(timeAttribute.getId());
 		valIdExist(timeAttribute.getId());
-		timeAttribute.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+		valBkNotNull(timeAttribute);
+		valBkNotChange(timeAttribute);
 		valNonBk(timeAttribute);
 
 		timeAttributeDao.update(timeAttribute);

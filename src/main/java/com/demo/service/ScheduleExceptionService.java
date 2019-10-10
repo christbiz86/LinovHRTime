@@ -1,6 +1,5 @@
 package com.demo.service;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -78,7 +77,8 @@ public class ScheduleExceptionService {
 	}
 
 	public void save(ScheduleException scheduleException) throws Exception {
-		scheduleException.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		valBkNotNull(scheduleException);
+		valBkNotExist(scheduleException);
 		valNonBk(scheduleException);
 
 		scheduleExceptionDao.create(scheduleException);
@@ -87,7 +87,8 @@ public class ScheduleExceptionService {
 	public void update(ScheduleException scheduleException) throws Exception {
 		valIdNotNull(scheduleException.getId());
 		valIdExist(scheduleException.getId());
-		scheduleException.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+		valBkNotNull(scheduleException);
+		valBkNotChange(scheduleException);
 		valNonBk(scheduleException);
 
 		scheduleExceptionDao.update(scheduleException);

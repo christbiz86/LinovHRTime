@@ -1,12 +1,13 @@
 package com.demo.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.TimeGroupDao;
+import com.demo.model.LoginSession;
 import com.demo.model.TimeGroup;
 
 @Service
@@ -96,7 +97,7 @@ public class TimeGroupService {
 	}
 
 	public List<TimeGroup> findAll() {
-		return timeGroupDao.findAll();
+		return timeGroupDao.findAll(((LoginSession)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getSelectedCompanyId());
 	}
 
 	public TimeGroup findById(String id) {
@@ -104,7 +105,8 @@ public class TimeGroupService {
 	}
 
 	public void save(TimeGroup timeGroup) throws Exception {
-		timeGroup.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		valBkNotNull(timeGroup);
+		valBkNotExist(timeGroup);
 		valNonBk(timeGroup);
 
 		timeGroupDao.create(timeGroup);
@@ -113,7 +115,8 @@ public class TimeGroupService {
 	public void update(TimeGroup timeGroup) throws Exception {
 		valIdNotNull(timeGroup.getId());
 		valIdExist(timeGroup.getId());
-		timeGroup.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+		valBkNotNull(timeGroup);
+		valBkNotChange(timeGroup);
 		valNonBk(timeGroup);
 
 		timeGroupDao.update(timeGroup);

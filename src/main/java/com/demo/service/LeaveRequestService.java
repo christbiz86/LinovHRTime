@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.LeaveRequestDao;
 import com.demo.dao.LeaveRequestDetailDao;
 import com.demo.model.LeaveRequest;
 import com.demo.model.LeaveRequestDetail;
+import com.demo.model.LoginSession;
 
 @Service
 public class LeaveRequestService {
@@ -73,7 +75,7 @@ public class LeaveRequestService {
 	}
 
 	public List<LeaveRequest> findAll() {
-		return leaveRequestDao.findAll();
+		return leaveRequestDao.findAll(((LoginSession)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getSelectedCompanyId());
 	}
 
 	public LeaveRequest findById(String id) {

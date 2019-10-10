@@ -14,7 +14,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_lovs",uniqueConstraints = @UniqueConstraint(columnNames = {"lov_type_id","key_data"}))
-public class Lov extends BaseEntity{
+public class Lov extends BaseMaster {
 	private static final long serialVersionUID = 1L;
 	
     @JoinColumn(name = "lov_type_id", referencedColumnName = "id")
@@ -29,9 +29,6 @@ public class Lov extends BaseEntity{
     
     @Column(name = "is_disableable")
     private Boolean isDisableable;
-    
-    @Column(name = "is_active")
-    private Boolean isActive;
     
     @Column(name = "arg1")
     private String arg1;
@@ -81,18 +78,6 @@ public class Lov extends BaseEntity{
 			this.isDisableable = false;
 		}else {
 			this.isDisableable = isDisableable;			
-		}
-	}
-
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		if(isActive==null) {
-			this.isActive = true;
-		}else {
-			this.isActive = isActive;			
 		}
 	}
 

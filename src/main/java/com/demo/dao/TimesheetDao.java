@@ -1,5 +1,6 @@
 package com.demo.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,19 @@ public class TimesheetDao extends AbstractJpaDao<Timesheet> {
 
 	public TimesheetDao() {
 		setClazz(Timesheet.class);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Timesheet> findAll(String comId) {
+		List<Timesheet> list= super.entityManager.createQuery("FROM Timesheet WHERE company.id=:comId")
+				.setParameter("comId", comId)
+				.getResultList();
+		if (list.size() == 0) {
+			return new ArrayList<Timesheet>();
+		}
+		else {
+			return list;
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

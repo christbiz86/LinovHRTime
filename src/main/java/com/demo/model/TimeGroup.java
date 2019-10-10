@@ -17,7 +17,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="time_time_groups",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","code"}))
-public class TimeGroup extends BaseEntity {
+public class TimeGroup extends BaseMaster {
 	private static final long serialVersionUID = 1L;
 	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
@@ -62,9 +62,6 @@ public class TimeGroup extends BaseEntity {
 	
 	@Column(name="eff_end")
 	private Date effEnd;
-	
-	@Column(name = "is_active")
-	private Boolean isActive = true;
 
 	public Company getCompany() {
 		return company;
@@ -192,13 +189,5 @@ public class TimeGroup extends BaseEntity {
 
 	public void setEffEnd(Date effEnd) {
 		this.effEnd = effEnd;
-	}
-
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
 	}
 }

@@ -1,5 +1,6 @@
 package com.demo.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,19 @@ public class TimeGroupDao extends AbstractJpaDao<TimeGroup> {
 	
 	public TimeGroupDao() {
 		setClazz(TimeGroup.class);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TimeGroup> findAll(String companyId) {
+		List<TimeGroup> list= super.entityManager.createQuery("FROM TimeGroup WHERE company.id=:companyId")
+				.setParameter("companyId", companyId)
+				.getResultList();
+		if (list.size() == 0) {
+			return new ArrayList<TimeGroup>();
+		}
+		else {
+			return list;
+		}
 	}
 
 	@SuppressWarnings("unchecked")

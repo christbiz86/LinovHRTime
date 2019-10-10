@@ -27,10 +27,10 @@ public class TimeAttribute extends BaseEntity {
     @OneToOne
 	private Employee employee;
 	
-	@Column(name="eff_begin")
+	@Column(name = "eff_begin")
 	private Date effBegin;
 	
-	@Column(name="eff_end")
+	@Column(name = "eff_end")
 	private Date effEnd;
 
 	public TimeGroup getTimeGroup() {

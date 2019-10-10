@@ -1,6 +1,5 @@
 package com.demo.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +68,8 @@ public class TimeGroupScheduleService {
 	}
 
 	public void save(TimeGroupSchedule timeGroupSchedule) throws Exception {
-		timeGroupSchedule.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		valBkNotNull(timeGroupSchedule);
+		valBkNotExist(timeGroupSchedule);
 		valNonBk(timeGroupSchedule);
 
 		timeGroupScheduleDao.create(timeGroupSchedule);
@@ -78,7 +78,8 @@ public class TimeGroupScheduleService {
 	public void update(TimeGroupSchedule timeGroupSchedule) throws Exception {
 		valIdNotNull(timeGroupSchedule.getId());
 		valIdExist(timeGroupSchedule.getId());
-		timeGroupSchedule.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+		valBkNotNull(timeGroupSchedule);
+		valBkNotChange(timeGroupSchedule);
 		valNonBk(timeGroupSchedule);
 
 		timeGroupScheduleDao.update(timeGroupSchedule);

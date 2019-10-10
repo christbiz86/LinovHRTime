@@ -16,14 +16,14 @@ public class LeaveRequestDetailDao extends AbstractJpaDao<LeaveRequestDetail> {
 	
 	@SuppressWarnings("unchecked")
 	public LeaveRequestDetail findByBk(String leaveReqId, Date date) {
-		List<LeaveRequestDetail> ratingScale = super.entityManager
+		List<LeaveRequestDetail> list = super.entityManager
 				.createQuery("from LeaveRequestDetail where leaveRequest.id=:leaveReqId and date=:date ")
 				.setParameter("leaveReqId", leaveReqId).setParameter("date", date).getResultList();
 
-		if (ratingScale.size() == 0) {
+		if (list.size() == 0) {
 			return new LeaveRequestDetail();
 		} else {
-			return (LeaveRequestDetail) ratingScale.get(0);
+			return (LeaveRequestDetail) list.get(0);
 		}
 	}
 
